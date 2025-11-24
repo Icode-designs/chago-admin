@@ -9,7 +9,7 @@ import {
 import { CustomButton, FlexBox } from "@/styles/components/ui.Styles";
 import { PRODUCTS } from "@/utils/data";
 import formatToNaira from "@/utils/formatPrice";
-import { numberToStars, sumRatings } from "@/utils/ratings";
+import { numberToStars } from "@/utils/ratings";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";

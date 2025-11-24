@@ -1,7 +1,7 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { ReactElement } from "react";
 
-interface Reviews {
+export interface Reviews {
   5: number;
   4: number;
   3: number;
