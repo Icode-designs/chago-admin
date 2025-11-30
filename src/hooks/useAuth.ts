@@ -18,19 +18,7 @@ export const useAuthListener = () => {
           // Fetch user document from Firestore
           const userData = await getUserDocument(user.uid);
 
-          if (userData) {
-            dispatch(setUser(userData));
-          } else {
-            dispatch(
-              setUser({
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName || "",
-                role: "customer",
-                photoURL: user.photoURL || "",
-              })
-            );
-          }
+          dispatch(setUser(userData));
         } else {
           dispatch(setUser(null));
         }
