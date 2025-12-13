@@ -3,19 +3,21 @@ import { FaPowerOff } from "react-icons/fa6";
 import useMediaQuery from "@/hooks/useMedia";
 import { NAV_CONTEXT } from "@/providers/NavProvider";
 import { FlexBox } from "@/styles/components/ui.Styles";
-import { LinksList, StyledSideBar } from "@/styles/components/User.styles";
-import React, { useContext, useEffect, useState } from "react";
+import { NavigationBox, StyledSideBar } from "@/styles/components/User.styles";
+import React, { useContext, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { handleLogoutAction } from "@/app/user/actions";
+import { handleLogoutAction } from "@/app/admin/actions";
 import { logoutUser } from "@/utils/auth";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import NavLink from "./UserNavlink";
+import { RootState } from "@/store/store";
 
 const UserSidebar = () => {
   const router = useRouter();
   const navCtx = useContext(NAV_CONTEXT);
   const isLargeScreen = useMediaQuery(1200);
+  const user = useSelector((state: RootState) => state.user.currentUser);
 
   useEffect(() => {
     if (!navCtx) return;
@@ -48,27 +50,22 @@ const UserSidebar = () => {
       <button onClick={toggleNav}>
         {navOpen ? <FaAngleRight /> : <FaAngleLeft />}
       </button>
+      <div>
+        <h3>Welcone Admin {user?.firstName}</h3>
+      </div>
 
-      <LinksList $show={navOpen}>
-        <li>
-          <NavLink href="/user/edit-profile">Edit Profile</NavLink>
-        </li>
-        <li>
-          <NavLink href="/user/add-product">Add Product</NavLink>
-        </li>
-        <li>
-          <NavLink href={`/user/products-list/${"all-products"}`}>
-            Products
-          </NavLink>
-        </li>
-
-        <button onClick={handleLogout}>
-          <FlexBox $gap={8}>
-            <FaPowerOff />
-            <h3>Logout</h3>
-          </FlexBox>
-        </button>
-      </LinksList>
+      <NavigationBox $show={navOpen}>
+        <NavLink href="/admin/dashboard">Dashboard</NavLink>
+        <NavLink href="/admin/edit-profile">Edit Profile</NavLink>
+        <NavLink href={`/admin/orders`}>Manage Orders</NavLink>
+        <NavLink href={`/admin/users`}>Manage Users</NavLink>
+      </NavigationBox>
+      <button onClick={handleLogout}>
+        <FlexBox $gap={8}>
+          <FaPowerOff />
+          <p>Logout</p>
+        </FlexBox>
+      </button>
     </StyledSideBar>
   );
 };

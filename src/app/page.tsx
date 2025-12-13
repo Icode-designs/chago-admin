@@ -8,7 +8,7 @@ const page = async () => {
   const session = cookieStore.get("session")?.value;
 
   if (!session) {
-    redirect("/login?from=/user");
+    redirect("/login?from=/admin");
   }
 
   const decodedToken = await adminAuth.verifySessionCookie(session, true);
@@ -22,11 +22,11 @@ const page = async () => {
 
   const user = userSnap.data();
 
-  if (user?.role !== "vendor") {
-    redirect("/login?from=/user&error=unauthorized");
+  if (user?.role !== "admin") {
+    redirect("/login?from=/admin&error=unauthorized");
   }
 
-  redirect("/user");
+  redirect("/admin");
 };
 
 export default page;

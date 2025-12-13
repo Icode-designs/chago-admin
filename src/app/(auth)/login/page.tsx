@@ -1,6 +1,6 @@
 "use client";
 
-import { handleLogoutAction } from "@/app/user/actions";
+import { handleLogoutAction } from "@/app/admin/actions";
 import { getUserDocument } from "@/lib/services/userService";
 import { setUser } from "@/store/slices/userSlice";
 import { AppDispatch } from "@/store/store";
@@ -59,8 +59,8 @@ const Page = () => {
       const userData = await getUserDocument(user.uid);
 
       //logout and redirect if user is not a seller account
-      if (userData?.role !== "vendor" || !userData) {
-        alert("user is not a seller account!!!");
+      if (userData?.role !== "admin" || !userData) {
+        alert("user is not an admin!!");
         // Delete session cookie on server
         await handleLogoutAction();
 
@@ -68,7 +68,7 @@ const Page = () => {
         await logoutUser();
 
         //redirect to sign-up
-        redirect("/signup");
+        redirect("");
       }
 
       dispatch(setUser(userData));

@@ -6,17 +6,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const MainContainer = styled.main<{ $variant?: "secondary" }>`
-  max-width: var(--max-width);
   min-height: 100vh;
   width: 100%;
   margin: var(--centered);
   margin-bottom: ${pxTorem(90)};
-  margin-top: ${pxTorem(82)};
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${pxTorem(90)};
   @media ${QUERY.DESKTOP} {
-    margin-top: ${pxTorem(112)};
     padding: 0;
   }
 
@@ -36,6 +33,20 @@ export const MainContainer = styled.main<{ $variant?: "secondary" }>`
         padding: ${pxTorem(40)};
       }
     `}
+`;
+
+export const GridColumn = styled.div<{
+  $align?: string;
+  $justify?: string;
+  $gap?: number;
+}>`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ $gap }) => pxTorem($gap as number) || pxTorem(16)};
+  align-content: ${({ $align }) => $align || "start"};
+  justify-items: ${({ $justify }) => $justify || "start"};
+  width: 100%;
+  height: fit-content;
 `;
 
 export const LogoBox = styled.div<{ $variant: "black" | "white" }>`
@@ -351,6 +362,36 @@ export const ImageGrid = styled.div`
       position: absolute;
       top: 0;
       left: 0;
+    }
+  }
+`;
+
+export const LoaderBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* HTML: <div class="loader"></div> */
+  > div {
+    width: ${pxTorem(50)};
+    height: ${pxTorem(50)};
+    padding: ${pxTorem(8)};
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #25b09b;
+    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+    to {
+      transform: rotate(1turn);
     }
   }
 `;

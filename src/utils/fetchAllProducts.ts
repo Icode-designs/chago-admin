@@ -1,18 +1,12 @@
 import { db } from "@/lib/firebaseCl";
-import PRODUCT, { Product } from "@/types/productsType";
+import { Product } from "@/types/productsType";
 import { DocumentData } from "firebase-admin/firestore";
-import {
-  collection,
-  getDocs,
-  query,
-  Timestamp,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, Timestamp } from "firebase/firestore";
 
 // Helper: convert Firestore Timestamp → millis OR recursively clean object
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function cleanData(obj: DocumentData): any {
+export function cleanData(obj: any): any {
   if (obj instanceof Timestamp) {
     return obj.toMillis();
   }
@@ -22,23 +16,20 @@ function cleanData(obj: DocumentData): any {
   }
 
   if (obj !== null && typeof obj === "object") {
-    const plain: DocumentData = {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const plain: any = {};
     for (const key in obj) {
       plain[key] = cleanData(obj[key]);
     }
     return plain;
   }
 
-  return obj; // primitive
+  return obj;
 }
 
-export async function fetchProducts(userId: string): Promise<PRODUCT[]> {
+export async function fetchProducts(): Promise<Product[]> {
   try {
-    const productsCollectionRef = query(
-      collection(db, "products"),
-      where("sellerId", "==", userId)
-    );
-
+    const productsCollectionRef = collection(db, "products");
     const snap = await getDocs(productsCollectionRef);
 
     const products = snap.docs.map((doc) => {
