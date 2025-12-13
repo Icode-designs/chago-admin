@@ -20,7 +20,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<AppUser>) => {
+    setUser: (state, action: PayloadAction<AppUser | null>) => {
       if (action.payload) {
         state.currentUser = action.payload;
         state.userLoggedIn = true;

@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebaseCl";
 import { setUser, setLoading } from "../store/slices/userSlice";
 import { getUserDocument } from "@/lib/services/userService";
+import { AppUser } from "@/types/userTypes";
 
 export const useAuthListener = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export const useAuthListener = () => {
           // Fetch user document from Firestore
           const userData = await getUserDocument(user.uid);
 
-          dispatch(setUser(userData));
+          dispatch(setUser(userData as AppUser));
         } else {
           dispatch(setUser(null));
         }
