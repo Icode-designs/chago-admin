@@ -5,7 +5,7 @@ import { Admin, AppUser, Customer, Vendor } from "@/types/userTypes";
 import { cleanData } from "@/utils/fetchAllProducts";
 
 // Get user document from Firestore
-export const getUserDocument = async (uid: string): Promise<AppUser | null> => {
+export const getUserDocument = async (uid: string): Promise<AppUser> => {
   try {
     const userRef = doc(db, "users", uid);
     const userSnap = await getDoc(userRef);
@@ -18,7 +18,7 @@ export const getUserDocument = async (uid: string): Promise<AppUser | null> => {
       } as Admin | Vendor | Customer;
     }
 
-    return null;
+    return;
   } catch (error) {
     console.error("Error getting user document:", error);
     throw error;
