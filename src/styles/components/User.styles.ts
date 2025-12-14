@@ -311,10 +311,6 @@ export const ItemInfoBox = styled.div`
     color: var(--col-300);
   }
 
-  .status {
-    padding: ${pxTorem(15)};
-    border-radius: var(--border-radius);
-  }
   > div {
     padding: ${pxTorem(15)} 0;
     border-bottom: solid grey ${pxTorem(1)};

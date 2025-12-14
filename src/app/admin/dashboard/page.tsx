@@ -23,7 +23,7 @@ const Page = () => {
       <OrdersChart orders={orders} />
       <SalesOverviewChart orders={orders} />
       <OrdersCountChart orders={orders} />
-      <TopProductsChart orders={orders} />
+      {/* <TopProductsChart orders={orders} /> */}
       <FlexBox $variant="secondary" $width="100%" $gap={24}>
         <CategoryPerformanceChart orders={orders} />
         <FulfillmentStatusChart orders={orders} />

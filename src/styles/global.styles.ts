@@ -85,6 +85,11 @@ p, li{
     line-height: 1.4;
 }
 
+.status {
+    padding: ${pxTorem(15)};
+    border-radius: var(--border-radius);
+  }
+
 .pending {
       background-color: #ffbe86ff;
       color: orange;

@@ -3,13 +3,19 @@ import SuggestedVendorBox from "@/components/SuggestedVendorBox";
 import useMediaQuery from "@/hooks/useMedia";
 import useFetchUser from "@/hooks/userFetchUser";
 import { RootState } from "@/store/store";
-import { FlexBox, LoaderBox } from "@/styles/components/ui.Styles";
+import {
+  CustomButton,
+  FlexBox,
+  LoaderBox,
+} from "@/styles/components/ui.Styles";
 import {
   ItemInfoBox,
   OrderHeader,
   UserContent,
   VendorSuggestionBox,
 } from "@/styles/components/User.styles";
+import { OrderItem } from "@/types/orderType";
+import { AppUser } from "@/types/userTypes";
 import formatToNaira from "@/utils/formatPrice";
 import { groupStockByVendor } from "@/utils/vendorStock";
 import React, { use } from "react";
@@ -161,7 +167,10 @@ const Page = ({ params }: { params: Promise<{ orderId: string }> }) => {
             sellers.map((seller, i) => (
               <SuggestedVendorBox
                 id={seller as string}
+                customer={customer as AppUser}
+                item={item as OrderItem}
                 key={i}
+                orderId={order?.orderId as string}
                 stock={generalStock[seller]}
               />
             ))}

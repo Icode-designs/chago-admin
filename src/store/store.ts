@@ -6,18 +6,20 @@ import userReducer from "./slices/userSlice";
 import usersReducer from "./slices/usersSlice";
 import orderReducer from "./slices/ordersSlice";
 import productReducer from "./slices/productsSlice";
+import requestReducer from "./slices/requestSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
   orders: orderReducer,
   users: usersReducer,
   products: productReducer,
+  requests: requestReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "orders", "products"],
+  whitelist: ["user", "orders", "products", "requests"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
