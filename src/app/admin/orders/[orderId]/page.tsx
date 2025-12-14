@@ -3,11 +3,7 @@ import SuggestedVendorBox from "@/components/SuggestedVendorBox";
 import useMediaQuery from "@/hooks/useMedia";
 import useFetchUser from "@/hooks/userFetchUser";
 import { RootState } from "@/store/store";
-import {
-  CustomButton,
-  FlexBox,
-  LoaderBox,
-} from "@/styles/components/ui.Styles";
+import { FlexBox, LoaderBox } from "@/styles/components/ui.Styles";
 import {
   ItemInfoBox,
   OrderHeader,

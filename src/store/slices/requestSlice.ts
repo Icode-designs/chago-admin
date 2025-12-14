@@ -13,7 +13,10 @@ const requestSlice = createSlice({
   name: "requests",
   initialState,
   reducers: {
-    setRequests: (state, action: PayloadAction<RequestType>) => {
+    setRequests: (state, action: PayloadAction<RequestType[]>) => {
+      state.requestList = action.payload;
+    },
+    setRequest: (state, action: PayloadAction<RequestType>) => {
       if (action.payload) {
         state.requestList.push(action.payload);
       } else {
@@ -23,6 +26,6 @@ const requestSlice = createSlice({
   },
 });
 
-export const { setRequests } = requestSlice.actions;
+export const { setRequests, setRequest } = requestSlice.actions;
 
 export default requestSlice.reducer;

@@ -7,6 +7,7 @@ import useFetchOrders from "@/hooks/useFetchOrders";
 import useFetchUsers from "@/hooks/useFetchUsers";
 import { LoaderBox } from "@/styles/components/ui.Styles";
 import useFetchProducts from "@/hooks/useFetcProducts";
+import useFetchRequests from "@/hooks/useFetchRequests";
 
 export default function UserLayoutWrapper({
   children,
@@ -16,8 +17,9 @@ export default function UserLayoutWrapper({
   const { loading: loadingOrders } = useFetchOrders();
   const { loading: loadingUsers } = useFetchUsers();
   const { loading: loadingProducts } = useFetchProducts();
+  const { loading: loadingRequests } = useFetchRequests();
 
-  if (loadingOrders || loadingUsers || loadingProducts) {
+  if (loadingOrders || loadingUsers || loadingProducts || loadingRequests) {
     return (
       <LoaderBox>
         <div></div>

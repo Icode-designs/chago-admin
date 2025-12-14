@@ -1,14 +1,13 @@
 "use client";
 import useFetchUser from "@/hooks/userFetchUser";
 import { db } from "@/lib/firebaseCl";
-import { setRequests } from "@/store/slices/requestSlice";
+import { setRequest } from "@/store/slices/requestSlice";
 import { RootState } from "@/store/store";
 import { CustomButton, FlexBox } from "@/styles/components/ui.Styles";
 import { OrderItem } from "@/types/orderType";
 import { RequestType } from "@/types/requestType";
 import { AppUser, Vendor } from "@/types/userTypes";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-import { div } from "framer-motion/client";
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { BsSend } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
@@ -63,7 +62,7 @@ const SuggestedVendorBox = ({
 
       console.log("Request created with ID:", docRef.id);
       dispatch(
-        setRequests({
+        setRequest({
           id: docRef.id,
           ...newRequest,
         })
