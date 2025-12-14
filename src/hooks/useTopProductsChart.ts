@@ -14,9 +14,13 @@ export function useTopProductsChart(orders: Order[]) {
     });
 
     return Object.entries(productCounts)
-      .map(([name, value]) => ({ name: trimText(name, 20), value }))
+      .map(([name, value]) => ({
+        name: trimText(name, 20),
+        fullName: name, // Keep full name for tooltip
+        value,
+      }))
       .sort((a, b) => b.value - a.value)
-      .slice(0, 5); // top 10
+      .slice(0, 5); // Top 5 products
   }, [orders]);
 
   return { data };

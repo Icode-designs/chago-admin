@@ -8,7 +8,7 @@ import FulfillmentStatusChart from "@/components/FulfillmentStatusChart";
 import CustomerGrowthChart from "@/components/CustomerGrowthChart";
 import RepeatVsNewCustomersChart from "@/components/RepeatVsNewCustomersChart";
 import { RootState } from "@/store/store";
-import { UserContent } from "@/styles/components/User.styles";
+import { OrderHeader, UserContent } from "@/styles/components/User.styles";
 import React from "react";
 import { useSelector } from "react-redux";
 import { FlexBox } from "@/styles/components/ui.Styles";
@@ -17,6 +17,9 @@ const Page = () => {
   const orders = useSelector((state: RootState) => state.orders.ordersList);
   return (
     <UserContent>
+      <OrderHeader>
+        <h2>Dashboard</h2>
+      </OrderHeader>
       <OrdersChart orders={orders} />
       <SalesOverviewChart orders={orders} />
       <OrdersCountChart orders={orders} />

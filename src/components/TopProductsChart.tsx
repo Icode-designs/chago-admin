@@ -22,15 +22,18 @@ export default function TopProductsChart({ orders }: { orders: Order[] }) {
 
   return (
     <OrdersChartBox>
-      <ChartTitle>Top Products</ChartTitle>
+      <ChartTitle>Top 5 Products</ChartTitle>
       <StyledOrdersChart>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} layout="horizontal">
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart
+            data={data}
+            layout="horizontal"
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" />
             <YAxis dataKey="name" type="category" width={150} />
             <Tooltip />
-
             <Bar dataKey="value" fill="#6366F1" />
           </BarChart>
         </ResponsiveContainer>

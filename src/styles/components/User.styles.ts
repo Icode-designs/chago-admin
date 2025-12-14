@@ -57,7 +57,7 @@ export const StyledSideBar = styled.div<{ $navOpen: boolean }>`
     justify-content: start;
     top: 0;
     left: 0;
-    width: 30%;
+    width: ${pxTorem(350)};
     height: 100vh;
     overflow-y: auto;
     border-radius: 0;
