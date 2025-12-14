@@ -100,11 +100,11 @@ p, li{
       color: #00b7ffff;
     }
 
-.recieved {
+.recieved, .accepted {
       background-color: #90ee90;
       color: #00ff00;
     }
-.canceled {
+.canceled, .rejected {
       background-color: #ff4c4cff;
       color: var(--col-300);
     }
